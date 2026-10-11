@@ -2,11 +2,12 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Habit, DailyEntry } from '../models/habit.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class HabitService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:5000/api';
+  private apiUrl = environment.apiBaseUrl;
 
   getHabits(): Observable<Habit[]> {
     return this.http.get<Habit[]>(`${this.apiUrl}/habits`);
