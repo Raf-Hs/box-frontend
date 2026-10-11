@@ -6,6 +6,7 @@
   --color-primary-light: #F7FCEB;
   --color-primary-dark: #A3E635;
   --color-primary-dark-hover: #84CC16;
+  --color-on-primary: #1A1A1A;
 
   /* Neutrals - Light theme */
   --color-bg: #FAFAFA;
@@ -62,6 +63,7 @@
   --color-primary-light: #1A2E05;
   --color-primary-dark: #A3E635;
   --color-primary-dark-hover: #BEF264;
+  --color-on-primary: #0F0F0F;
 
   --color-bg: #0F0F0F;
   --color-surface: #1A1A1A;
@@ -128,7 +130,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: var(--color-on-primary);
   font-weight: 700;
   font-size: 14px;
 }
@@ -225,7 +227,7 @@ body {
 
 .btn-primary {
   background: var(--color-primary);
-  color: #fff;
+  color: var(--color-on-primary);
   border-color: var(--color-primary);
 }
 
