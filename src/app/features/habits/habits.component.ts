@@ -63,47 +63,52 @@ import { Habit } from '../../models/habit.model';
       .habits-container {
         max-width: 800px;
         margin: 0 auto;
-        padding: 24px;
-        background-color: #f5f5f5;
+        padding: var(--space-lg);
+        background-color: var(--color-bg);
         min-height: 100vh;
       }
 
       .habits-header {
-        margin-bottom: 24px;
+        margin-bottom: var(--space-lg);
       }
 
       .habits-header h1 {
         margin: 0;
-        font-size: 28px;
-        color: #333;
+        font-size: var(--font-size-2xl);
+        color: var(--color-text);
       }
 
       .state-message {
         text-align: center;
-        padding: 48px;
-        color: #666;
-        font-size: 16px;
+        padding: var(--space-2xl);
+        color: var(--color-text-muted);
+        font-size: var(--font-size-base);
       }
 
       .state-message.error {
-        color: #d32f2f;
+        color: var(--color-error);
       }
 
       .habits-list {
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: var(--space-sm);
       }
 
       .habit-row {
-        background: #fff;
-        border: 1px solid #e0e0e0;
-        border-radius: 8px;
-        padding: 16px 20px;
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+        padding: var(--space-md) var(--space-lg);
         display: flex;
         align-items: center;
-        gap: 24px;
+        gap: var(--space-lg);
         flex-wrap: wrap;
+        transition: box-shadow var(--transition-fast);
+      }
+
+      .habit-row:hover {
+        box-shadow: var(--shadow-md);
       }
 
       .habit-info {
@@ -112,55 +117,58 @@ import { Habit } from '../../models/habit.model';
       }
 
       .habit-info h3 {
-        margin: 0 0 4px 0;
-        font-size: 16px;
-        color: #333;
+        margin: 0 0 var(--space-xs) 0;
+        font-size: var(--font-size-sm);
+        color: var(--color-text);
       }
 
       .habit-unit {
-        font-size: 13px;
-        color: #888;
+        font-size: var(--font-size-xs);
+        color: var(--color-text-muted);
       }
 
       .habit-form {
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: var(--space-sm);
       }
 
       .habit-form label {
-        font-size: 14px;
+        font-size: var(--font-size-sm);
         font-weight: 500;
-        color: #555;
+        color: var(--color-text-secondary);
       }
 
       .target-input {
         width: 100px;
-        padding: 8px 12px;
-        border: 1px solid #e0e0e0;
-        border-radius: 6px;
-        font-size: 14px;
+        padding: var(--space-sm) var(--space-md);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-sm);
+        font-size: var(--font-size-sm);
+        background: var(--color-surface);
+        color: var(--color-text);
+        transition: border-color var(--transition-fast);
       }
 
       .target-input:focus {
         outline: none;
-        border-color: #1976d2;
+        border-color: var(--color-border-focus);
       }
 
       .btn-save {
-        padding: 8px 20px;
-        background: #1976d2;
+        padding: var(--space-sm) var(--space-lg);
+        background: var(--color-primary);
         color: #fff;
         border: none;
-        border-radius: 6px;
-        font-size: 14px;
+        border-radius: var(--radius-sm);
+        font-size: var(--font-size-sm);
         font-weight: 500;
         cursor: pointer;
-        transition: background 0.2s;
+        transition: background var(--transition-fast);
       }
 
       .btn-save:hover:not(:disabled) {
-        background: #1565c0;
+        background: var(--color-primary-hover);
       }
 
       .btn-save:disabled {
@@ -169,16 +177,16 @@ import { Habit } from '../../models/habit.model';
       }
 
       .feedback {
-        font-size: 13px;
+        font-size: var(--font-size-xs);
         font-weight: 500;
       }
 
       .feedback.success {
-        color: #2e7d32;
+        color: var(--color-success);
       }
 
       .feedback.error {
-        color: #d32f2f;
+        color: var(--color-error);
       }
     `,
   ],
