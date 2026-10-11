@@ -2,6 +2,7 @@ import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HabitService } from '../../core/habit.service';
 import { DailyEntry } from '../../models/habit.model';
+import { inclusiveRangeEndingToday, isValidRange } from '../../core/date.utils';
 
 type RangePreset = '7d' | '30d' | '90d' | 'custom';
 
@@ -243,8 +244,8 @@ export class HistoryComponent implements OnInit {
   ];
 
   selectedPreset = signal<RangePreset>('30d');
-  fromDate = signal<string>(this.presetFrom(30));
-  toDate = signal<string>(this.formatDate(new Date()));
+  fromDate = signal<string>(inclusiveRangeEndingToday(PRESET_DAYS['30d']).from);
+  toDate = signal<string>(inclusiveRangeEndingToday(PRESET_DAYS['30d']).to);
   history = signal<DailyEntry[]>([]);
   loading = signal<boolean>(false);
   error = signal<string | null>(null);
@@ -257,8 +258,9 @@ export class HistoryComponent implements OnInit {
   selectPreset(preset: RangePreset): void {
     this.selectedPreset.set(preset);
     if (preset !== 'custom') {
-      this.fromDate.set(this.presetFrom(PRESET_DAYS[preset]));
-      this.toDate.set(this.formatDate(new Date()));
+      const range = inclusiveRangeEndingToday(PRESET_DAYS[preset]);
+      this.fromDate.set(range.from);
+      this.toDate.set(range.to);
       this.loadHistory();
     }
   }
@@ -283,8 +285,8 @@ export class HistoryComponent implements OnInit {
     const from = this.fromDate();
     const to = this.toDate();
 
-    if (from > to) {
-      this.rangeError.set("The 'From' date must be on or before the 'To' date.");
+    if (!isValidRange(from, to)) {
+      this.rangeError.set("From date must be on or before To date.");
       this.history.set([]);
       this.loading.set(false);
       return;
@@ -311,20 +313,5 @@ export class HistoryComponent implements OnInit {
   completionPercent(entry: DailyEntry): number {
     if (entry.dailyTarget <= 0) return 0;
     return Math.min(100, Math.round((entry.value / entry.dailyTarget) * 100));
-  }
-
-  /** Inclusive range: a 7-day preset covers today and the 6 days before it. */
-  private presetFrom(days: number): string {
-    const date = new Date();
-    date.setDate(date.getDate() - (days - 1));
-    return this.formatDate(date);
-  }
-
-  /** Formats a Date as YYYY-MM-DD in the browser's local timezone. */
-  private formatDate(date: Date): string {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
   }
 }
