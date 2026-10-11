@@ -39,6 +39,16 @@ export function inclusiveRangeEndingToday(
 }
 
 /**
+ * Returns today's local calendar date as `YYYY-MM-DD`.
+ *
+ * Prefer this over `new Date().toISOString()`, which converts to UTC and can
+ * return the wrong calendar day for users in western timezones.
+ */
+export function todayLocal(now: Date = new Date()): string {
+  return toLocalDateString(now);
+}
+
+/**
  * Returns true when `from` is on or before `to`. Both values must be
  * `YYYY-MM-DD` strings, for which lexicographic order matches date order.
  */

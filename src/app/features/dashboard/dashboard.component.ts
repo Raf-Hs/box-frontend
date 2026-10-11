@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { HabitService } from '../../core/habit.service';
 import { Habit, DailyEntry } from '../../models/habit.model';
+import { todayLocal } from '../../core/date.utils';
 
 @Component({
   selector: 'app-dashboard',
@@ -314,7 +315,7 @@ export class DashboardComponent implements OnInit {
   private habitService = inject(HabitService);
   private fb = inject(FormBuilder);
 
-  selectedDate = signal<string>(this.getToday());
+  selectedDate = signal<string>(todayLocal());
   entries = signal<DailyEntry[]>([]);
   loading = signal<boolean>(true);
   error = signal<string | null>(null);
@@ -329,10 +330,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadEntries();
-  }
-
-  private getToday(): string {
-    return new Date().toISOString().split('T')[0];
   }
 
   private loadEntries(): void {
