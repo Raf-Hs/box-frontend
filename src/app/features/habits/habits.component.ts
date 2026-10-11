@@ -158,7 +158,7 @@ import { Habit } from '../../models/habit.model';
       .btn-save {
         padding: var(--space-sm) var(--space-lg);
         background: var(--color-primary);
-        color: #fff;
+        color: var(--color-on-primary);
         border: none;
         border-radius: var(--radius-sm);
         font-size: var(--font-size-sm);
