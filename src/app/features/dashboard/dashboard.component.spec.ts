@@ -111,6 +111,26 @@ describe('DashboardComponent', () => {
     expect(fixture.componentInstance.completionPercent({ ...entry, dailyTarget: 0 })).toBe(0);
   });
 
+  it('uses the local calendar date as the selected day', () => {
+    jasmine.clock().install();
+    jasmine.clock().mockDate(new Date(2026, 0, 8, 23, 59, 59));
+
+    try {
+      fixture = TestBed.createComponent(DashboardComponent);
+      fixture.detectChanges();
+
+      expect(fixture.componentInstance.selectedDate()).toBe('2026-01-08');
+
+      const req = httpMock.expectOne((r) => r.url === `${API}/daily-entries`);
+      expect(req.request.params.get('date')).toBe('2026-01-08');
+
+      req.flush([entry]);
+      fixture.detectChanges();
+    } finally {
+      jasmine.clock().uninstall();
+    }
+  });
+
   it('still renders after a theme change', () => {
     fixture = TestBed.createComponent(DashboardComponent);
     fixture.detectChanges();
