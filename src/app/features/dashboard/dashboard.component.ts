@@ -329,7 +329,7 @@ export class DashboardComponent implements OnInit {
         this.buildForms(data);
         this.loading.set(false);
       },
-      err: (err) => {
+      error: (err) => {
         this.error.set('Failed to load entries. Please try again.');
         this.loading.set(false);
         console.error('Failed to load entries:', err);
@@ -395,7 +395,7 @@ export class DashboardComponent implements OnInit {
             form.get('value')?.setValue(updated.value, { emitEvent: false });
           }
         },
-        err: (err) => {
+        error: (err) => {
           this.error.set('Failed to update value. Please try again.');
           console.error('Failed to update entry:', err);
         },

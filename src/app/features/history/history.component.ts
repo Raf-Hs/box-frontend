@@ -234,7 +234,7 @@ export class HistoryComponent implements OnInit {
         this.history.set(data);
         this.loading.set(false);
       },
-      err: (err) => {
+      error: (err) => {
         this.error.set('Failed to load history. Please try again.');
         this.loading.set(false);
         console.error('Failed to load history:', err);

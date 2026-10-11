@@ -46,10 +46,10 @@ import { Habit } from '../../models/habit.model';
                 </button>
               </form>
 
-              @if (saveFeedback()[habit.id]?.success) {
+              @if (saveFeedback()[habit.id] && saveFeedback()[habit.id].success) {
                 <span class="feedback success">Saved!</span>
               }
-              @if (saveFeedback()[habit.id]?.error) {
+              @if (saveFeedback()[habit.id] && saveFeedback()[habit.id].error) {
                 <span class="feedback error">{{ saveFeedback()[habit.id].error }}</span>
               }
             </div>
@@ -208,7 +208,7 @@ export class HabitsComponent implements OnInit {
         this.buildForms(data);
         this.loading.set(false);
       },
-      err: (err) => {
+      error: (err) => {
         this.error.set('Failed to load habits. Please try again.');
         this.loading.set(false);
         console.error('Failed to load habits:', err);
@@ -254,7 +254,7 @@ export class HabitsComponent implements OnInit {
           this.saveFeedback.update((f) => ({ ...f, [habit.id]: {} }));
         }, 3000);
       },
-      err: (err) => {
+      error: (err) => {
         this.isSaving.update((s) => ({ ...s, [habit.id]: false }));
         this.saveFeedback.update((f) => ({
           ...f,
