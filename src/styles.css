@@ -220,6 +220,10 @@ body {
   background: var(--color-surface-hover);
 }
 
+.btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
 .btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
@@ -314,5 +318,9 @@ body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .btn:active:not(:disabled) {
+    transform: none;
   }
 }
