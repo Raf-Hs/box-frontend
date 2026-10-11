@@ -1,6 +1,6 @@
 {
-  "name": "daily-tracker-frontend",
-  "version": "0.0.0",
+  "name": "box-frontend",
+  "version": "0.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
