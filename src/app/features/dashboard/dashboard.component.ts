@@ -9,9 +9,9 @@ import { Habit, DailyEntry } from '../../models/habit.model';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   template: `
-    <div class="dashboard-container">
+    <div class="dashboard-container animate-fade-in">
       <header class="dashboard-header">
-        <h1>Daily Tracker</h1>
+        <h1>BOX</h1>
         <div class="date-picker">
           <label for="date">Date:</label>
           <input
@@ -102,8 +102,8 @@ import { Habit, DailyEntry } from '../../models/habit.model';
       .dashboard-container {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 24px;
-        background-color: #f5f5f5;
+        padding: var(--space-lg);
+        background-color: var(--color-bg);
         min-height: 100vh;
       }
 
@@ -111,153 +111,166 @@ import { Habit, DailyEntry } from '../../models/habit.model';
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 24px;
+        margin-bottom: var(--space-lg);
       }
 
       .dashboard-header h1 {
         margin: 0;
-        font-size: 28px;
-        color: #333;
+        font-size: var(--font-size-2xl);
+        color: var(--color-text);
       }
 
       .date-picker {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: var(--space-sm);
       }
 
       .date-picker label {
         font-weight: 500;
-        color: #555;
+        color: var(--color-text-secondary);
       }
 
       .date-picker input {
-        padding: 8px 12px;
-        border: 1px solid #e0e0e0;
-        border-radius: 6px;
-        font-size: 14px;
-        background: #fff;
+        padding: var(--space-sm) var(--space-md);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-sm);
+        font-size: var(--font-size-sm);
+        background: var(--color-surface);
+        color: var(--color-text);
+        transition: border-color var(--transition-fast);
+      }
+
+      .date-picker input:focus {
+        outline: none;
+        border-color: var(--color-border-focus);
       }
 
       .state-message {
         text-align: center;
-        padding: 48px;
-        color: #666;
-        font-size: 16px;
+        padding: var(--space-2xl);
+        color: var(--color-text-muted);
+        font-size: var(--font-size-base);
       }
 
       .state-message.error {
-        color: #d32f2f;
+        color: var(--color-error);
       }
 
       .total-progress {
-        background: #fff;
-        border: 1px solid #e0e0e0;
-        border-radius: 8px;
-        padding: 16px 20px;
-        margin-bottom: 24px;
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+        padding: var(--space-md) var(--space-lg);
+        margin-bottom: var(--space-lg);
       }
 
       .total-progress-header {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 8px;
+        margin-bottom: var(--space-sm);
         font-weight: 500;
-        color: #333;
+        color: var(--color-text);
       }
 
       .progress-bar-container {
         width: 100%;
         height: 8px;
-        background: #e0e0e0;
-        border-radius: 4px;
+        background: var(--color-border);
+        border-radius: var(--radius-full);
         overflow: hidden;
       }
 
       .progress-bar-fill {
         height: 100%;
-        background: #1976d2;
-        border-radius: 4px;
-        transition: width 0.3s ease;
+        background: var(--color-primary);
+        border-radius: var(--radius-full);
+        transition: width var(--transition-slow);
       }
 
       .habits-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-        gap: 16px;
+        gap: var(--space-md);
       }
 
       .habit-card {
-        background: #fff;
-        border: 1px solid #e0e0e0;
-        border-radius: 8px;
-        padding: 16px;
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+        padding: var(--space-md);
+        transition: box-shadow var(--transition-fast);
+      }
+
+      .habit-card:hover {
+        box-shadow: var(--shadow-md);
       }
 
       .habit-card-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 12px;
+        margin-bottom: var(--space-sm);
       }
 
       .habit-card-header h3 {
         margin: 0;
-        font-size: 16px;
-        color: #333;
+        font-size: var(--font-size-sm);
+        color: var(--color-text);
       }
 
       .completion-badge {
-        background: #e3f2fd;
-        color: #1976d2;
-        padding: 2px 8px;
-        border-radius: 12px;
-        font-size: 12px;
+        background: var(--color-primary-light);
+        color: var(--color-primary);
+        padding: 2px var(--space-sm);
+        border-radius: var(--radius-full);
+        font-size: var(--font-size-xs);
         font-weight: 600;
       }
 
       .habit-card-body {
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: var(--space-sm);
       }
 
       .value-display {
         display: flex;
         align-items: baseline;
-        gap: 4px;
+        gap: var(--space-xs);
       }
 
       .current-value {
-        font-size: 24px;
+        font-size: var(--font-size-xl);
         font-weight: 700;
-        color: #1976d2;
+        color: var(--color-primary);
       }
 
       .unit {
-        font-size: 14px;
-        color: #666;
+        font-size: var(--font-size-sm);
+        color: var(--color-text-secondary);
       }
 
       .controls {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: var(--space-sm);
       }
 
       .btn {
-        padding: 6px 14px;
-        border: 1px solid #e0e0e0;
-        border-radius: 6px;
-        background: #fff;
+        padding: var(--space-sm) var(--space-md);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-sm);
+        background: var(--color-surface);
+        color: var(--color-text);
         cursor: pointer;
-        font-size: 14px;
+        font-size: var(--font-size-sm);
         font-weight: 500;
-        transition: background 0.2s;
+        transition: all var(--transition-fast);
       }
 
       .btn:hover:not(:disabled) {
-        background: #f0f0f0;
+        background: var(--color-surface-hover);
       }
 
       .btn:disabled {
@@ -266,12 +279,12 @@ import { Habit, DailyEntry } from '../../models/habit.model';
       }
 
       .btn-increment {
-        color: #1976d2;
-        border-color: #1976d2;
+        color: var(--color-primary);
+        border-color: var(--color-primary);
       }
 
       .btn-increment:hover:not(:disabled) {
-        background: #e3f2fd;
+        background: var(--color-primary-light);
       }
 
       .value-form {
@@ -280,16 +293,19 @@ import { Habit, DailyEntry } from '../../models/habit.model';
 
       .value-input {
         width: 100%;
-        padding: 6px 10px;
-        border: 1px solid #e0e0e0;
-        border-radius: 6px;
-        font-size: 14px;
+        padding: var(--space-sm) var(--space-md);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-sm);
+        font-size: var(--font-size-sm);
         text-align: center;
+        background: var(--color-surface);
+        color: var(--color-text);
+        transition: border-color var(--transition-fast);
       }
 
       .value-input:focus {
         outline: none;
-        border-color: #1976d2;
+        border-color: var(--color-border-focus);
       }
     `,
   ],
