@@ -129,6 +129,9 @@ No environment variables are required -- the production API URL is compiled into
 
 ## Development Workflow
 
-- `main` -- production-ready code
-- `develop` -- integration branch
-- `feature/<name>` -- individual features
+All changes follow a mandatory issue-first workflow: create an issue, branch from
+`develop`, implement, validate, open a pull request targeting `develop`, review, and
+release separately through a `develop` -> `main` pull request.
+
+See [`docs/DEVELOPMENT_WORKFLOW.md`](docs/DEVELOPMENT_WORKFLOW.md) for the complete
+process, including the solo-maintainer self-review policy.
